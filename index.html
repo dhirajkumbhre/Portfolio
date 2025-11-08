@@ -1,28 +1,414 @@
-<!DOCTYPE html>
+<!DOCTYPE html><!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dhiraj Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dhiraj Kumbhre — Web Developer Portfolio</title>
+  <meta name="description" content="Dhiraj Kumbhre • MERN & Python web developer. Clean UI, performant apps, and delightful UX. View projects, skills, and contact." />
+  <meta name="theme-color" content="#0EA5E9" />
+  <meta property="og:title" content="Dhiraj Kumbhre — Web Developer" />
+  <meta property="og:description" content="MERN & Python developer crafting fast, beautiful web apps." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?q=80&w=1200&auto=format&fit=crop" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1220; --text:#e5eef7; --muted:#9db2c7; --brand:#0EA5E9; --brand-2:#8B5CF6; --card:#0e1729A6; --stroke:#1f2a44; --accent:#22d3ee;
+      --radius:18px; --shadow:0 10px 30px rgba(2,8,23,.35);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:radial-gradient(1200px 600px at 80% -20%,rgba(14,165,233,.25),transparent),radial-gradient(900px 400px at -10% 10%,rgba(139,92,246,.25),transparent),var(--bg);color:var(--text);line-height:1.6}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1120px;margin:0 auto;padding:0 20px}
+    header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,rgba(11,18,32,.9),rgba(11,18,32,.6) 70%,transparent);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--stroke)}
+    nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
+    .logo{width:36px;height:36px;border-radius:12px;background:conic-gradient(from 120deg at 50% 50%,var(--brand),var(--accent),var(--brand-2),var(--brand));box-shadow:0 8px 20px rgba(34,211,238,.4)}
+    .nav-links a{padding:8px 12px;border-radius:10px;border:1px solid transparent}
+    .nav-links a:hover{border-color:var(--stroke);background:#0e1729}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:14px;border:1px solid var(--stroke);background:linear-gradient(180deg,#0e1729,#0a1020);box-shadow:var(--shadow)}
+    .btn.primary{border-color:rgba(14,165,233,.35);background:linear-gradient(135deg,rgba(14,165,233,.25),rgba(139,92,246,.25));}
+    .btn.ghost{background:transparent}
+    .badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--stroke);padding:6px 10px;border-radius:999px;color:var(--muted);font-size:.9rem}
+    .grid{display:grid;gap:24px}
+    .hero{padding:72px 0 36px}
+    .hero-wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center}
+    .hero-card{border:1px solid var(--stroke);background:linear-gradient(180deg,rgba(14,23,41,.9),rgba(14,23,41,.6));border-radius:calc(var(--radius) + 6px);padding:28px}
+    .hero h1{font-size:clamp(32px,5vw,56px);line-height:1.1;margin:.2em 0}
+    .hero p{color:#c5d3e3;font-size:1.05rem}
+    .tilt{transform:perspective(900px) rotateX(2deg) rotateY(-3deg)}
+    .codecard{font-family:"JetBrains Mono",monospace}
+    .card{border:1px solid var(--stroke);background:linear-gradient(180deg,rgba(14,23,41,.9),rgba(14,23,41,.6));border-radius:var(--radius);padding:20px}
+    .card:hover{transform:translateY(-2px);transition:.25s ease}
+    .section{padding:56px 0}
+    h2{font-size:clamp(22px,3.2vw,34px);margin:0 0 10px}
+    .muted{color:var(--muted)}
+    .chips{display:flex;flex-wrap:wrap;gap:10px}
+    .chip{border:1px dashed var(--stroke);padding:8px 12px;border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:.9rem}
+    .projects{grid-template-columns:repeat(12,1fr)}
+    .project{grid-column:span 12;display:grid;grid-template-columns:1fr;gap:14px}
+    .project-media{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--stroke)}
+    .project-media img{display:block;width:100%;height:240px;object-fit:cover;filter:saturate(110%)}
+    .project .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .pill{font-size:.8rem;border:1px solid var(--stroke);padding:6px 10px;border-radius:999px;color:#cfe7ff;background:rgba(14,165,233,.12)}
+    .split{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+    .footer{border-top:1px solid var(--stroke);padding:24px 0;color:var(--muted)}
+    .kbd{font-family:"JetBrains Mono",monospace; font-size:.9rem;}
+    .like-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .like{padding:16px;border:1px solid var(--stroke);border-radius:14px;background:linear-gradient(180deg,#0e172980,#0e172940)}
+    .contact-form{display:grid;gap:12px}
+    input,textarea{width:100%;background:#0a1020;border:1px solid var(--stroke);color:var(--text);padding:12px 14px;border-radius:12px}
+    textarea{min-height:120px}
+    .hide{display:none}
+    /* responsive */
+    @media (max-width: 920px){
+      .hero-wrap{grid-template-columns:1fr}
+      .split{grid-template-columns:1fr}
+      .like-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width: 560px){
+      .nav-links{display:none}
+      .like-grid{grid-template-columns:1fr}
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Dhiraj Kumbhre",
+    "jobTitle": "Web Developer (MERN & Python)",
+    "url": "https://example.com",
+    "sameAs": ["https://github.com/dhiraj-k","https://www.linkedin.com/in/dhiraj-kumbhre"],
+    "alumniOf": {"@type":"CollegeOrUniversity","name":"RTMNU, Nagpur"},
+    "knowsAbout": ["React","Node.js","MongoDB","Express","Python","REST APIs","UI/UX"],
+    "address": {"@type":"PostalAddress","addressCountry":"India"}
+  }
+  </script>
 </head>
 <body>
+  <!-- Header -->
   <header>
-    <h1>Hi, I'm Dhiraj 👋</h1>
-    <p>Web Developer | Learner | Creator</p>
+    <div class="container">
+      <nav aria-label="Primary">
+        <div class="brand"><span class="logo" aria-hidden="true"></span> <span>Dhiraj<span style="color:var(--brand)">.dev</span></span></div>
+        <div class="nav-links">
+          <a href="#about" aria-label="About">About</a>
+          <a href="#projects" aria-label="Projects">Projects</a>
+          <a href="#skills" aria-label="Skills">Skills</a>
+          <a href="#likes" aria-label="Things I Like">Likes</a>
+          <a href="#contact" aria-label="Contact">Contact</a>
+        </div>
+        <div class="actions" style="display:flex;gap:10px;align-items:center">
+          <button class="btn ghost" id="themeToggle" aria-label="Toggle Theme">🌓</button>
+          <a class="btn" href="#contact">Hire me</a>
+        </div>
+      </nav>
+    </div>
   </header>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <ul>
-      <li>💻 Calculator App</li>
-      <li>📝 To-Do List</li>
-      <li>🌦️ Weather App</li>
-    </ul>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-wrap">
+      <div class="hero-card">
+        <span class="badge">👋 Hey! I’m Dhiraj — <span class="kbd">Web Developer</span></span>
+        <h1>Clean UI. Fast APIs. <br/>Real impact.</h1>
+        <p>
+          I build modern web apps using <strong>MERN</strong> and <strong>Python</strong>. I care about pixel-perfect design,
+          performance, and writing code that’s easy to maintain.
+        </p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:14px">
+          <a class="btn primary" href="#projects">🚀 View my projects</a>
+          <a class="btn" href="assets/Dhiraj_Kumbhre_Resume.pdf" download>⬇️ Download Resume</a>
+          <a class="btn ghost" href="https://github.com/" target="_blank" rel="noopener">🌐 GitHub</a>
+        </div>
+        <div class="chips" style="margin-top:16px">
+          <span class="chip">#React</span>
+          <span class="chip">#Node</span>
+          <span class="chip">#Express</span>
+          <span class="chip">#MongoDB</span>
+          <span class="chip">#Python</span>
+          <span class="chip">#REST</span>
+          <span class="chip">#Tailwind</span>
+        </div>
+      </div>
+      <div class="tilt codecard card" aria-hidden="true">
+<pre class="kbd" style="margin:0;white-space:pre-wrap"><span style="color:#9ccfd8">// quick snapshot</span>
+const dhiraj = {
+  name: "Dhiraj Kumbhre",
+  role: "Web Dev (MERN & Python)",
+  location: "India",
+  interests: ["Clean UI", "Open Source", "BGMI", "Fitness"],
+  currentlyLearning: ["System Design", "TypeScript"],
+  lookingFor: "Web developer role to build delightful products",
+}
+</pre>
+      </div>
+    </div>
   </section>
 
-  <footer>
-    <p>Contact: dhiraj@example.com</p>
+  <!-- About -->
+  <section id="about" class="section">
+    <div class="container split">
+      <div class="card">
+        <h2>About me</h2>
+        <p class="muted">27 y/o from India • B.Tech (Electronics & Telecommunication) — RTMNU, Nagpur</p>
+        <p>
+          I’m a self-driven developer who enjoys shipping features end‑to‑end: designing clean interfaces,
+          building performant APIs, and automating deployments. I’ve also tinkered with hardware projects
+          (RC boats, telemetry) which sharpened my problem‑solving.
+        </p>
+        <div class="chips" aria-label="Highlights">
+          <span class="chip">UI/UX focused</span>
+          <span class="chip">Performance first</span>
+          <span class="chip">Clean architecture</span>
+          <span class="chip">Team player</span>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Quick facts</h2>
+        <ul>
+          <li>🌱 Learning: TypeScript, testing (Jest), and cloud basics.</li>
+          <li>🧰 Favorite stack: React + Node + Express + MongoDB.</li>
+          <li>⚙️ Comfortable with: Git/GitHub, REST APIs, Tailwind, Prisma/Mongoose.</li>
+          <li>🕹️ Fun: BGMI squads, building small tools, and fitness.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section">
+    <div class="container">
+      <div style="display:flex;align-items:end;justify-content:space-between;gap:10px;margin-bottom:10px">
+        <div>
+          <h2>Featured projects</h2>
+          <p class="muted">A mix of MERN, Python, and UI-heavy builds.</p>
+        </div>
+        <a class="btn ghost" href="https://github.com/" target="_blank" rel="noopener">See all on GitHub →</a>
+      </div>
+
+      <div class="grid projects">
+        <!-- Project 1 -->
+        <article class="project card">
+          <div class="project-media">
+            <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop" alt="Dashboard UI screenshot" />
+          </div>
+          <div>
+            <h3>TradeLite — Stock Tracker</h3>
+            <p class="muted">A sleek dashboard to track watchlists, P/L, and news. Built with React, Express, and MongoDB. Emphasis on caching and optimistic UI updates.</p>
+            <div class="tags">
+              <span class="pill">React</span>
+              <span class="pill">Express</span>
+              <span class="pill">MongoDB</span>
+              <span class="pill">JWT</span>
+            </div>
+            <div style="display:flex;gap:10px;margin-top:10px">
+              <a class="btn" href="#" target="_blank" rel="noopener">Live</a>
+              <a class="btn ghost" href="#" target="_blank" rel="noopener">Code</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project card">
+          <div class="project-media">
+            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop" alt="Task app UI screenshot" />
+          </div>
+          <div>
+            <h3>TaskZen — Minimal To‑Do</h3>
+            <p class="muted">A fast, keyboard‑first to‑do app with offline support and beautiful animations. Service workers for PWA + IndexedDB for storage.</p>
+            <div class="tags">
+              <span class="pill">React</span>
+              <span class="pill">PWA</span>
+              <span class="pill">IndexedDB</span>
+              <span class="pill">Framer Motion</span>
+            </div>
+            <div style="display:flex;gap:10px;margin-top:10px">
+              <a class="btn" href="#" target="_blank" rel="noopener">Live</a>
+              <a class="btn ghost" href="#" target="_blank" rel="noopener">Code</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project card">
+          <div class="project-media">
+            <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1200&auto=format&fit=crop" alt="API backend screenshot" />
+          </div>
+          <div>
+            <h3>API Boiler — Node Starter</h3>
+            <p class="muted">Production‑ready REST API template with authentication, rate‑limit, logging, and Swagger docs. Perfect to kickstart projects.</p>
+            <div class="tags">
+              <span class="pill">Node</span>
+              <span class="pill">Express</span>
+              <span class="pill">JWT</span>
+              <span class="pill">Swagger</span>
+            </div>
+            <div style="display:flex;gap:10px;margin-top:10px">
+              <a class="btn" href="#" target="_blank" rel="noopener">Live</a>
+              <a class="btn ghost" href="#" target="_blank" rel="noopener">Code</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 4 -->
+        <article class="project card">
+          <div class="project-media">
+            <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=1200&auto=format&fit=crop" alt="Portfolio UI screenshot" />
+          </div>
+          <div>
+            <h3>Netflix Landing Clone</h3>
+            <p class="muted">A responsive Netflix replica focusing on layout, typography, and reusable components. Clean CSS + accessibility tweaks.</p>
+            <div class="tags">
+              <span class="pill">HTML</span>
+              <span class="pill">CSS</span>
+              <span class="pill">JavaScript</span>
+            </div>
+            <div style="display:flex;gap:10px;margin-top:10px">
+              <a class="btn" href="#" target="_blank" rel="noopener">Live</a>
+              <a class="btn ghost" href="#" target="_blank" rel="noopener">Code</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="section">
+    <div class="container split">
+      <div class="card">
+        <h2>Core skills</h2>
+        <div class="chips" style="margin-top:8px">
+          <span class="chip">React</span>
+          <span class="chip">TypeScript</span>
+          <span class="chip">Node.js</span>
+          <span class="chip">Express</span>
+          <span class="chip">MongoDB</span>
+          <span class="chip">REST APIs</span>
+          <span class="chip">JWT/Auth</span>
+          <span class="chip">Tailwind CSS</span>
+          <span class="chip">Git/GitHub</span>
+          <span class="chip">Python (FastAPI)</span>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Tooling & practices</h2>
+        <ul>
+          <li>✅ Component‑driven development, reusable design systems</li>
+          <li>✅ API design, error handling, logging & monitoring</li>
+          <li>✅ Code reviews, semantic commits, PR hygiene</li>
+          <li>✅ Basics of CI/CD (Vercel/Netlify, GitHub Actions)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Likes -->
+  <section id="likes" class="section">
+    <div class="container">
+      <h2>Things I like</h2>
+      <p class="muted">Stuff that keeps me curious and energized.</p>
+      <div class="like-grid" style="margin-top:12px">
+        <div class="like">🎨 Clean UI & subtle micro‑interactions</div>
+        <div class="like">🧩 Solving performance bottlenecks</div>
+        <div class="like">🕹️ BGMI with friends</div>
+        <div class="like">💪 Fitness & consistency</div>
+        <div class="like">📚 Writing docs others love</div>
+        <div class="like">🔍 Refactoring for readability</div>
+        <div class="like">🧪 Testing & reliability</div>
+        <div class="like">🌐 Open source & learning in public</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section">
+    <div class="container split">
+      <div class="card">
+        <h2>Let’s build something!</h2>
+        <p>Best way to reach me is email. I usually reply within a day.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin:14px 0">
+          <a class="btn" href="mailto:dhiraj@example.com">📧 dhiraj@example.com</a>
+          <a class="btn ghost" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn ghost" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <p class="muted">Or drop a message here:</p>
+        <form class="contact-form" onsubmit="event.preventDefault(); toast('Thanks! I\'ll get back soon.'); this.reset();">
+          <label>
+            <span class="muted">Your name</span>
+            <input required placeholder="Your full name"/>
+          </label>
+          <label>
+            <span class="muted">Email</span>
+            <input type="email" required placeholder="you@example.com"/>
+          </label>
+          <label>
+            <span class="muted">Message</span>
+            <textarea required placeholder="Tell me about your project…"></textarea>
+          </label>
+          <button class="btn" type="submit">Send message</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>Resume snapshot</h2>
+        <ul>
+          <li><strong>Education:</strong> B.Tech, Electronics & Telecommunication — RTMNU, Nagpur</li>
+          <li><strong>Interests:</strong> Web apps, UI/UX, open source, gaming, fitness</li>
+          <li><strong>Objective:</strong> Web dev role (MERN/Python) building real user value</li>
+        </ul>
+        <div style="margin-top:10px">
+          <a class="btn" href="assets/Dhiraj_Kumbhre_Resume.pdf" download>Download full resume</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">
+      <div>© <span id="year"></span> Dhiraj Kumbhre. Built with ❤️ using clean HTML/CSS/JS.</div>
+      <div class="muted">Press <span class="kbd">T</span> to toggle theme.</div>
+    </div>
   </footer>
+
+  <div id="toast" class="hide" role="status" aria-live="polite" style="position:fixed;inset:auto 0 24px;display:flex;justify-content:center;pointer-events:none"></div>
+
+  <script>
+    // Theme toggle (dark <-> dim)
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const themeToggle = document.getElementById('themeToggle');
+    function setTheme(mode){
+      if(mode==='light'){
+        document.documentElement.style.setProperty('--bg','#0f172a');
+      } else {
+        document.documentElement.style.setProperty('--bg','#0b1220');
+      }
+      localStorage.setItem('theme', mode);
+    }
+    function toggleTheme(){
+      const cur = localStorage.getItem('theme') || (prefersDark ? 'dark' : 'light');
+      setTheme(cur==='dark' ? 'light' : 'dark');
+    }
+    themeToggle.addEventListener('click', toggleTheme);
+    document.addEventListener('keydown', (e)=>{ if(e.key.toLowerCase()==='t') toggleTheme(); });
+    setTheme(localStorage.getItem('theme') || (prefersDark ? 'dark' : 'light'));
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simple toast
+    function toast(msg){
+      const t = document.getElementById('toast');
+      t.classList.remove('hide');
+      t.innerHTML = `<div style="pointer-events:auto;border:1px solid var(--stroke);background:#0e1729;backdrop-filter:blur(4px);padding:12px 16px;border-radius:12px;box-shadow:var(--shadow)">✅ ${msg}</div>`;
+      setTimeout(()=>t.classList.add('hide'), 2400);
+    }
+  </script>
 </body>
 </html>
+
+
