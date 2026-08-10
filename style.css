@@ -1,28 +1,51 @@
 /* =========================================================
    Dhiraj Kumbhre Portfolio
-   Modern dark developer portfolio
+   Responsive dark developer portfolio
+========================================================= */
+
+
+/* =========================================================
+   ROOT VARIABLES
 ========================================================= */
 
 :root {
+
   --bg: #080b12;
+
   --bg-soft: #0d111a;
+
   --card: #111722;
 
+  --card-hover: #151d2a;
+
+
   --text: #f5f7fa;
+
   --muted: #9aa4b2;
 
+  --text-soft: #c9ced6;
+
+
   --brand: #38bdf8;
+
+  --brand-hover: #67ccf8;
+
   --brand-dark: #0284c7;
 
+
   --border: rgba(255, 255, 255, 0.09);
+
   --border-hover: rgba(56, 189, 248, 0.45);
+
 
   --radius: 16px;
 
-  --container: 1100px;
+  --container: 1120px;
+
 
   --shadow:
     0 20px 60px rgba(0, 0, 0, 0.35);
+
 }
 
 
@@ -34,21 +57,36 @@
   box-sizing: border-box;
 }
 
+
 html {
+
   scroll-behavior: smooth;
+
+  scroll-padding-top: 82px;
+
 }
 
+
 body {
+
   margin: 0;
 
   font-family: "Inter", sans-serif;
 
   background:
+
     radial-gradient(
       circle at 80% 10%,
       rgba(56, 189, 248, 0.08),
       transparent 30%
     ),
+
+    radial-gradient(
+      circle at 10% 40%,
+      rgba(56, 189, 248, 0.035),
+      transparent 25%
+    ),
+
     var(--bg);
 
   color: var(--text);
@@ -56,24 +94,42 @@ body {
   line-height: 1.7;
 
   -webkit-font-smoothing: antialiased;
+
+  overflow-x: hidden;
+
 }
 
 
-body::selection {
+::selection {
+
   background: var(--brand);
+
   color: #001018;
+
 }
 
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+a,
+button {
 
-
-button,
-a {
   -webkit-tap-highlight-color: transparent;
+
+}
+
+
+a {
+
+  color: inherit;
+
+  text-decoration: none;
+
+}
+
+
+button {
+
+  font: inherit;
+
 }
 
 
@@ -82,12 +138,15 @@ a {
 ========================================================= */
 
 .container {
-  width: min(
-    calc(100% - 40px),
-    var(--container)
-  );
+
+  width:
+    min(
+      calc(100% - 40px),
+      var(--container)
+    );
 
   margin-inline: auto;
+
 }
 
 
@@ -96,23 +155,32 @@ a {
 ========================================================= */
 
 .header {
+
   position: sticky;
 
   top: 0;
 
-  z-index: 100;
+  z-index: 1000;
 
-  border-bottom: 1px solid var(--border);
+  border-bottom:
+    1px solid var(--border);
 
-  background: rgba(8, 11, 18, 0.82);
+  background:
+    rgba(8, 11, 18, 0.82);
 
-  backdrop-filter: blur(14px);
+  backdrop-filter:
+    blur(16px);
 
-  -webkit-backdrop-filter: blur(14px);
+  -webkit-backdrop-filter:
+    blur(16px);
+
 }
 
 
 .nav {
+
+  position: relative;
+
   display: flex;
 
   justify-content: space-between;
@@ -120,33 +188,45 @@ a {
   align-items: center;
 
   min-height: 70px;
+
 }
 
 
+/* Logo */
+
 .logo {
+
   font-size: 21px;
 
   font-weight: 800;
 
   letter-spacing: -0.5px;
+
 }
 
 
 .logo span {
+
   color: var(--brand);
+
 }
 
 
-nav {
+/* Desktop navigation */
+
+.site-menu {
+
   display: flex;
 
   align-items: center;
 
-  gap: 24px;
+  gap: 22px;
+
 }
 
 
-nav a {
+.site-menu a {
+
   color: var(--muted);
 
   font-size: 14px;
@@ -156,33 +236,124 @@ nav a {
   transition:
     color 0.2s ease,
     transform 0.2s ease;
+
 }
 
 
-nav a:hover {
+.site-menu a:hover {
+
   color: var(--text);
 
-  transform: translateY(-1px);
+  transform:
+    translateY(-1px);
+
 }
 
 
-nav a:last-child {
+/* Contact navigation button */
+
+.site-menu a:last-child {
+
   padding: 8px 13px;
 
-  border: 1px solid var(--border);
+  border:
+    1px solid var(--border);
 
   border-radius: 9px;
 
   color: var(--text);
 
-  background: rgba(255, 255, 255, 0.03);
+  background:
+    rgba(255, 255, 255, 0.03);
+
 }
 
 
-nav a:last-child:hover {
-  border-color: var(--border-hover);
+.site-menu a:last-child:hover {
+
+  border-color:
+    var(--border-hover);
 
   color: var(--brand);
+
+}
+
+
+/* =========================================================
+   MOBILE MENU BUTTON
+========================================================= */
+
+.menu-toggle {
+
+  display: none;
+
+  width: 42px;
+
+  height: 42px;
+
+  padding: 9px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: 10px;
+
+  background:
+    rgba(255, 255, 255, 0.03);
+
+  cursor: pointer;
+
+}
+
+
+.menu-toggle span {
+
+  display: block;
+
+  width: 100%;
+
+  height: 2px;
+
+  margin: 5px 0;
+
+  border-radius: 10px;
+
+  background: var(--text);
+
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+
+}
+
+
+/* Hamburger → X */
+
+.menu-toggle.active
+span:nth-child(1) {
+
+  transform:
+    translateY(7px)
+    rotate(45deg);
+
+}
+
+
+.menu-toggle.active
+span:nth-child(2) {
+
+  opacity: 0;
+
+}
+
+
+.menu-toggle.active
+span:nth-child(3) {
+
+  transform:
+    translateY(-7px)
+    rotate(-45deg);
+
 }
 
 
@@ -191,7 +362,8 @@ nav a:last-child:hover {
 ========================================================= */
 
 .hero {
-  min-height: 650px;
+
+  min-height: 680px;
 
   display: flex;
 
@@ -200,98 +372,154 @@ nav a:last-child:hover {
   padding-top: 100px;
 
   padding-bottom: 90px;
+
 }
 
 
 .hero-content {
-  max-width: 850px;
+
+  max-width: 900px;
+
 }
 
 
-.hero-label {
+/* Hero label */
+
+.hero-label,
+.section-kicker {
+
   display: inline-flex;
 
   align-items: center;
 
   gap: 8px;
 
-  margin-bottom: 22px;
-
   color: var(--brand);
 
-  font-family: "JetBrains Mono", monospace;
+  font-family:
+    "JetBrains Mono",
+    monospace;
 
   font-size: 12px;
 
   font-weight: 600;
 
   letter-spacing: 1.5px;
+
+}
+
+
+.hero-label {
+
+  margin-bottom: 22px;
+
 }
 
 
 .hero-label::before {
+
   content: "";
 
   width: 7px;
 
   height: 7px;
 
+  flex: 0 0 7px;
+
   border-radius: 50%;
 
   background: var(--brand);
 
-  box-shadow: 0 0 12px var(--brand);
+  box-shadow:
+    0 0 12px var(--brand);
+
 }
 
+
+.section-kicker {
+
+  margin: 0 0 10px;
+
+  opacity: 0.9;
+
+}
+
+
+/* Hero heading */
 
 .hero h1 {
+
   margin: 0;
 
-  max-width: 850px;
+  max-width: 900px;
 
-  font-size: clamp(
-    42px,
-    7vw,
-    72px
-  );
+  font-size:
+    clamp(
+      42px,
+      7vw,
+      74px
+    );
 
-  line-height: 1.05;
+  line-height: 1.04;
 
-  letter-spacing: -3px;
+  letter-spacing: -3.5px;
 
   font-weight: 800;
+
 }
 
 
-.hero-description {
-  max-width: 680px;
+.hero h1 span {
 
-  margin-top: 25px;
+  color: var(--brand);
+
+}
+
+
+/* Hero description */
+
+.hero-description {
+
+  max-width: 700px;
+
+  margin:
+    25px 0 0;
 
   color: var(--muted);
 
   font-size: 18px;
 
   line-height: 1.8;
+
 }
 
 
 /* =========================================================
-   HERO ACTIONS
+   BUTTONS
 ========================================================= */
 
-.hero-actions {
-  margin-top: 32px;
+.hero-actions,
+.contact-actions,
+.resume-actions {
 
   display: flex;
 
+  flex-wrap: wrap;
+
   gap: 12px;
 
-  flex-wrap: wrap;
+}
+
+
+.hero-actions {
+
+  margin-top: 32px;
+
 }
 
 
 .btn {
+
   display: inline-flex;
 
   align-items: center;
@@ -300,13 +528,16 @@ nav a:last-child:hover {
 
   min-height: 46px;
 
-  padding: 11px 17px;
+  padding:
+    11px 17px;
+
+  border:
+    1px solid var(--border);
 
   border-radius: 10px;
 
-  border: 1px solid var(--border);
-
-  background: var(--bg-soft);
+  background:
+    var(--bg-soft);
 
   color: var(--text);
 
@@ -318,36 +549,54 @@ nav a:last-child:hover {
     transform 0.2s ease,
     border-color 0.2s ease,
     background 0.2s ease;
+
 }
 
 
 .btn:hover {
-  transform: translateY(-2px);
 
-  border-color: var(--border-hover);
+  transform:
+    translateY(-2px);
 
-  background: #131b27;
+  border-color:
+    var(--border-hover);
+
+  background:
+    #131b27;
+
 }
 
 
 .btn.primary {
-  background: var(--brand);
 
-  border-color: var(--brand);
+  background:
+    var(--brand);
 
-  color: #001018;
+  border-color:
+    var(--brand);
+
+  color:
+    #001018;
+
 }
 
 
 .btn.primary:hover {
-  background: #67ccf8;
 
-  border-color: #67ccf8;
+  background:
+    var(--brand-hover);
+
+  border-color:
+    var(--brand-hover);
+
 }
 
 
 .btn.ghost {
-  background: transparent;
+
+  background:
+    transparent;
+
 }
 
 
@@ -356,6 +605,7 @@ nav a:last-child:hover {
 ========================================================= */
 
 .social-links {
+
   display: flex;
 
   flex-wrap: wrap;
@@ -363,22 +613,29 @@ nav a:last-child:hover {
   gap: 22px;
 
   margin-top: 28px;
+
 }
 
 
 .social-links a {
+
   color: var(--muted);
 
   font-size: 14px;
 
   font-weight: 500;
 
-  transition: color 0.2s ease;
+  transition:
+    color 0.2s ease;
+
 }
 
 
 .social-links a:hover {
-  color: var(--brand);
+
+  color:
+    var(--brand);
+
 }
 
 
@@ -387,41 +644,60 @@ nav a:last-child:hover {
 ========================================================= */
 
 .section {
+
   padding-top: 95px;
 
   padding-bottom: 95px;
+
+  border-top:
+    1px solid var(--border);
+
 }
 
 
 .section h2 {
-  margin: 0 0 12px;
 
-  font-size: clamp(
-    30px,
-    5vw,
-    42px
-  );
+  margin:
+    0 0 12px;
 
-  letter-spacing: -1.5px;
+  font-size:
+    clamp(
+      30px,
+      5vw,
+      42px
+    );
 
-  line-height: 1.15;
+  letter-spacing:
+    -1.5px;
+
+  line-height:
+    1.15;
+
 }
 
 
 .section > p {
+
   max-width: 760px;
-}
 
-
-.section-description {
-  color: var(--muted);
-
-  margin-bottom: 30px;
 }
 
 
 .muted {
-  color: var(--muted);
+
+  color:
+    var(--muted);
+
+}
+
+
+.section-description {
+
+  margin-bottom: 30px;
+
+  color:
+    var(--muted);
+
 }
 
 
@@ -429,17 +705,15 @@ nav a:last-child:hover {
    ABOUT
 ========================================================= */
 
-#about {
-  border-top: 1px solid var(--border);
-}
-
-
 #about > p:not(.muted) {
+
   max-width: 750px;
 
-  color: #c9ced6;
+  color:
+    var(--text-soft);
 
   font-size: 16px;
+
 }
 
 
@@ -447,12 +721,8 @@ nav a:last-child:hover {
    PROJECTS
 ========================================================= */
 
-#projects {
-  border-top: 1px solid var(--border);
-}
-
-
 .project-grid {
+
   display: grid;
 
   grid-template-columns:
@@ -464,40 +734,51 @@ nav a:last-child:hover {
   gap: 20px;
 
   margin-top: 32px;
+
 }
 
 
 .project-card {
+
   position: relative;
+
+  display: flex;
+
+  flex-direction: column;
 
   padding: 28px;
 
-  min-height: 390px;
+  min-height: 400px;
 
   background:
+
     linear-gradient(
       145deg,
-      rgba(255,255,255,0.035),
-      rgba(255,255,255,0.01)
+      rgba(255, 255, 255, 0.035),
+      rgba(255, 255, 255, 0.01)
     ),
+
     var(--card);
 
-  border: 1px solid var(--border);
+  border:
+    1px solid var(--border);
 
-  border-radius: var(--radius);
-
-  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  border-radius:
+    var(--radius);
 
   overflow: hidden;
 
   transition:
     transform 0.25s ease,
     border-color 0.25s ease,
-    box-shadow 0.25s ease;
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+
 }
 
 
 .project-card::before {
+
   content: "";
 
   position: absolute;
@@ -520,25 +801,40 @@ nav a:last-child:hover {
 
   opacity: 0;
 
-  transition: opacity 0.25s ease;
+  transition:
+    opacity 0.25s ease;
+
 }
 
 
 .project-card:hover {
-  transform: translateY(-6px);
 
-  border-color: var(--border-hover);
+  transform:
+    translateY(-6px);
 
-  box-shadow: var(--shadow);
+  border-color:
+    var(--border-hover);
+
+  background:
+    var(--card-hover);
+
+  box-shadow:
+    var(--shadow);
+
 }
 
 
 .project-card:hover::before {
+
   opacity: 1;
+
 }
 
 
+/* Project number */
+
 .project-number {
+
   display: inline-flex;
 
   align-items: center;
@@ -553,63 +849,88 @@ nav a:last-child:hover {
 
   border-radius: 10px;
 
-  background: rgba(56, 189, 248, 0.08);
+  background:
+    rgba(56, 189, 248, 0.08);
 
-  border: 1px solid rgba(56, 189, 248, 0.18);
+  border:
+    1px solid
+    rgba(56, 189, 248, 0.18);
 
-  color: var(--brand);
+  color:
+    var(--brand);
 
-  font-family: "JetBrains Mono", monospace;
+  font-family:
+    "JetBrains Mono",
+    monospace;
 
   font-size: 12px;
 
   font-weight: 600;
+
 }
 
 
+/* Project heading */
+
 .project-card h3 {
-  margin: 0 0 9px;
+
+  margin:
+    0 0 9px;
 
   font-size: 25px;
 
-  letter-spacing: -0.5px;
+  letter-spacing:
+    -0.5px;
+
 }
 
 
 .project-card > p {
-  margin: 8px 0;
 
-  color: #c6ccd5;
+  margin:
+    8px 0;
+
+  color:
+    #c6ccd5;
 
   font-size: 14px;
+
 }
 
 
 .project-card .muted {
-  color: var(--muted);
 
-  font-family: "JetBrains Mono", monospace;
+  color:
+    var(--muted);
+
+  font-family:
+    "JetBrains Mono",
+    monospace;
 
   font-size: 12px;
+
 }
 
 
-/* =========================================================
-   PROJECT LINKS
-========================================================= */
+/* Project buttons */
 
 .project-links {
-  display: flex;
 
-  gap: 10px;
+  display: flex;
 
   flex-wrap: wrap;
 
-  margin-top: 25px;
+  gap: 10px;
+
+  margin-top: auto;
+
+  padding-top: 22px;
+
 }
 
 
 .project-btn {
+
   display: inline-flex;
 
   align-items: center;
@@ -618,13 +939,16 @@ nav a:last-child:hover {
 
   min-height: 40px;
 
-  padding: 9px 13px;
+  padding:
+    9px 13px;
 
   border-radius: 9px;
 
-  background: var(--brand);
+  background:
+    var(--brand);
 
-  color: #001018;
+  color:
+    #001018;
 
   font-size: 13px;
 
@@ -633,31 +957,46 @@ nav a:last-child:hover {
   transition:
     transform 0.2s ease,
     background 0.2s ease;
+
 }
 
 
 .project-btn:hover {
-  transform: translateY(-2px);
 
-  background: #67ccf8;
+  transform:
+    translateY(-2px);
+
+  background:
+    var(--brand-hover);
+
 }
 
 
 .project-btn.secondary {
-  background: transparent;
 
-  border: 1px solid var(--border);
+  background:
+    transparent;
 
-  color: var(--text);
+  border:
+    1px solid var(--border);
+
+  color:
+    var(--text);
+
 }
 
 
 .project-btn.secondary:hover {
-  border-color: var(--border-hover);
 
-  color: var(--brand);
+  border-color:
+    var(--border-hover);
 
-  background: rgba(56, 189, 248, 0.05);
+  color:
+    var(--brand);
+
+  background:
+    rgba(56, 189, 248, 0.05);
+
 }
 
 
@@ -665,12 +1004,8 @@ nav a:last-child:hover {
    SKILLS
 ========================================================= */
 
-#skills {
-  border-top: 1px solid var(--border);
-}
-
-
 .skills {
+
   display: flex;
 
   flex-wrap: wrap;
@@ -678,37 +1013,56 @@ nav a:last-child:hover {
   gap: 10px;
 
   margin-top: 28px;
+
 }
 
 
 .skills span {
-  padding: 9px 14px;
 
-  border-radius: 999px;
+  padding:
+    9px 14px;
 
-  border: 1px solid var(--border);
+  border-radius:
+    999px;
 
-  background: rgba(255,255,255,0.02);
+  border:
+    1px solid var(--border);
 
-  color: #cbd1da;
+  background:
+    rgba(255, 255, 255, 0.02);
 
-  font-family: "JetBrains Mono", monospace;
+  color:
+    #cbd1da;
+
+  font-family:
+    "JetBrains Mono",
+    monospace;
 
   font-size: 12px;
 
   transition:
     border-color 0.2s ease,
     color 0.2s ease,
-    background 0.2s ease;
+    background 0.2s ease,
+    transform 0.2s ease;
+
 }
 
 
 .skills span:hover {
-  border-color: var(--border-hover);
 
-  color: var(--brand);
+  transform:
+    translateY(-2px);
 
-  background: rgba(56, 189, 248, 0.05);
+  border-color:
+    var(--border-hover);
+
+  color:
+    var(--brand);
+
+  background:
+    rgba(56, 189, 248, 0.05);
+
 }
 
 
@@ -716,61 +1070,173 @@ nav a:last-child:hover {
    EDUCATION
 ========================================================= */
 
-#education {
-  border-top: 1px solid var(--border);
+.education-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  gap: 18px;
+
+  margin-top: 25px;
+
 }
 
 
 .education-card {
+
   position: relative;
 
-  margin-top: 18px;
+  padding: 24px;
 
-  padding: 22px 24px;
+  background:
+    var(--card);
 
-  background: var(--card);
+  border:
+    1px solid var(--border);
 
-  border: 1px solid var(--border);
-
-  border-radius: var(--radius);
+  border-radius:
+    var(--radius);
 
   transition:
     border-color 0.2s ease,
     transform 0.2s ease;
+
 }
 
 
 .education-card:hover {
-  transform: translateY(-3px);
 
-  border-color: var(--border-hover);
+  transform:
+    translateY(-3px);
+
+  border-color:
+    var(--border-hover);
+
 }
 
 
 .education-card h3 {
-  margin: 0 0 5px;
 
-  font-size: 19px;
+  margin:
+    0 0 5px;
+
+  padding-right:
+    60px;
+
+  font-size:
+    19px;
+
 }
 
 
 .education-card p {
-  margin: 5px 0;
 
-  color: #c5cad3;
+  margin:
+    5px 0;
+
+  color:
+    #c5cad3;
+
 }
 
 
-.education-card span {
-  display: inline-block;
+.education-year {
 
-  margin-top: 8px;
+  position: absolute;
 
-  color: var(--brand);
+  top: 22px;
 
-  font-family: "JetBrains Mono", monospace;
+  right: 22px;
 
-  font-size: 12px;
+  color:
+    var(--brand);
+
+  font-family:
+    "JetBrains Mono",
+    monospace;
+
+  font-size:
+    12px;
+
+}
+
+
+/* =========================================================
+   RESUME
+========================================================= */
+
+.resume-section {
+
+  padding-top:
+    70px;
+
+}
+
+
+.resume-card {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 35px;
+
+  padding: 35px;
+
+  background:
+
+    linear-gradient(
+      135deg,
+      rgba(56, 189, 248, 0.08),
+      rgba(255, 255, 255, 0.015)
+    ),
+
+    var(--card);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:
+    var(--radius);
+
+  box-shadow:
+    0 10px 40px
+    rgba(0, 0, 0, 0.15);
+
+}
+
+
+.resume-card h2 {
+
+  margin-bottom:
+    10px;
+
+}
+
+
+.resume-card .muted {
+
+  max-width:
+    650px;
+
+  margin:
+    0;
+
+}
+
+
+.resume-actions {
+
+  flex-shrink:
+    0;
+
 }
 
 
@@ -778,53 +1244,62 @@ nav a:last-child:hover {
    CONTACT
 ========================================================= */
 
-#contact {
-  border-top: 1px solid var(--border);
-
-  padding-bottom: 110px;
-}
-
-
 .contact {
-  text-align: center;
+
+  text-align:
+    center;
+
+  padding-bottom:
+    110px;
+
 }
 
 
 .contact .hero-label {
-  justify-content: center;
+
+  justify-content:
+    center;
+
 }
 
 
 .contact h2 {
-  font-size: clamp(
-    34px,
-    6vw,
-    55px
-  );
 
-  margin-bottom: 15px;
+  margin-bottom:
+    15px;
+
+  font-size:
+    clamp(
+      34px,
+      6vw,
+      55px
+    );
+
 }
 
 
 .contact > p:not(.hero-label) {
-  max-width: 600px;
 
-  margin: 0 auto;
+  max-width:
+    600px;
 
-  color: var(--muted);
+  margin:
+    0 auto;
+
+  color:
+    var(--muted);
+
 }
 
 
 .contact-actions {
-  display: flex;
 
-  justify-content: center;
+  justify-content:
+    center;
 
-  flex-wrap: wrap;
+  margin-top:
+    28px;
 
-  gap: 12px;
-
-  margin-top: 28px;
 }
 
 
@@ -833,230 +1308,588 @@ nav a:last-child:hover {
 ========================================================= */
 
 .footer {
+
   display: flex;
 
-  justify-content: space-between;
+  justify-content:
+    space-between;
 
-  align-items: center;
+  align-items:
+    center;
 
-  gap: 20px;
+  gap:
+    20px;
 
-  border-top: 1px solid var(--border);
+  max-width:
+    var(--container);
 
-  padding: 24px 20px 35px;
+  margin:
+    auto;
 
-  max-width: var(--container);
+  padding:
+    24px 20px 35px;
 
-  margin: auto;
+  border-top:
+    1px solid var(--border);
 
-  color: var(--muted);
+  color:
+    var(--muted);
 
-  font-size: 12px;
+  font-size:
+    12px;
+
 }
 
 
 .footer p {
-  margin: 0;
+
+  margin:
+    0;
+
 }
 
 
 /* =========================================================
-   RESPONSIVE — TABLET
+   TABLET
 ========================================================= */
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
 
   .container {
-    width: min(
-      calc(100% - 32px),
-      var(--container)
-    );
+
+    width:
+      min(
+        calc(100% - 32px),
+        var(--container)
+      );
+
   }
 
 
   .hero {
-    min-height: 580px;
 
-    padding-top: 80px;
+    min-height:
+      600px;
 
-    padding-bottom: 70px;
+    padding-top:
+      85px;
+
+    padding-bottom:
+      75px;
+
   }
 
 
   .hero h1 {
-    letter-spacing: -2px;
+
+    letter-spacing:
+      -2.5px;
+
   }
 
 
   .project-grid {
-    grid-template-columns: 1fr;
+
+    grid-template-columns:
+      1fr;
+
   }
 
 
-  .section {
-    padding-top: 75px;
+  .education-grid {
 
-    padding-bottom: 75px;
+    grid-template-columns:
+      1fr;
+
+  }
+
+
+  .resume-card {
+
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+
   }
 
 }
 
 
 /* =========================================================
-   RESPONSIVE — MOBILE
+   MOBILE NAVIGATION
+========================================================= */
+
+@media (max-width: 720px) {
+
+  .nav {
+
+    min-height:
+      64px;
+
+  }
+
+
+  /* Show hamburger */
+
+  .menu-toggle {
+
+    display:
+      block;
+
+  }
+
+
+  /* Mobile dropdown */
+
+  .site-menu {
+
+    position:
+      absolute;
+
+    top:
+      calc(100% + 8px);
+
+    left:
+      0;
+
+    right:
+      0;
+
+    display:
+      flex;
+
+    flex-direction:
+      column;
+
+    align-items:
+      stretch;
+
+    gap:
+      2px;
+
+    padding:
+      10px;
+
+    border:
+      1px solid var(--border);
+
+    border-radius:
+      14px;
+
+    background:
+      rgba(13, 17, 26, 0.98);
+
+    box-shadow:
+      var(--shadow);
+
+    opacity:
+      0;
+
+    visibility:
+      hidden;
+
+    transform:
+      translateY(-8px);
+
+    pointer-events:
+      none;
+
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease,
+      visibility 0.2s ease;
+
+  }
+
+
+  .site-menu.open {
+
+    opacity:
+      1;
+
+    visibility:
+      visible;
+
+    transform:
+      translateY(0);
+
+    pointer-events:
+      auto;
+
+  }
+
+
+  .site-menu a {
+
+    width:
+      100%;
+
+    padding:
+      12px 13px;
+
+    border-radius:
+      9px;
+
+  }
+
+
+  .site-menu a:hover {
+
+    background:
+      rgba(255, 255, 255, 0.04);
+
+  }
+
+
+  .site-menu a:last-child {
+
+    border:
+      0;
+
+    background:
+      transparent;
+
+  }
+
+
+  .site-menu a:last-child:hover {
+
+    background:
+      rgba(56, 189, 248, 0.06);
+
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
 ========================================================= */
 
 @media (max-width: 600px) {
 
   .container {
-    width: min(
-      calc(100% - 28px),
-      var(--container)
-    );
-  }
 
+    width:
+      min(
+        calc(100% - 28px),
+        var(--container)
+      );
 
-  .nav {
-    min-height: 62px;
-  }
-
-
-  nav {
-    gap: 13px;
-  }
-
-
-  nav a {
-    font-size: 12px;
-  }
-
-
-  nav a:nth-child(1),
-  nav a:nth-child(2) {
-    display: none;
-  }
-
-
-  nav a:last-child {
-    padding: 7px 10px;
   }
 
 
   .hero {
-    min-height: auto;
 
-    padding-top: 75px;
+    min-height:
+      auto;
 
-    padding-bottom: 65px;
+    padding-top:
+      72px;
+
+    padding-bottom:
+      65px;
+
+  }
+
+
+  .hero-label {
+
+    margin-bottom:
+      18px;
+
+    font-size:
+      11px;
+
+    letter-spacing:
+      1.2px;
+
   }
 
 
   .hero h1 {
-    font-size: clamp(
-      40px,
-      12vw,
-      55px
-    );
 
-    letter-spacing: -2.5px;
+    font-size:
+      clamp(
+        39px,
+        12vw,
+        55px
+      );
+
+    line-height:
+      1.06;
+
+    letter-spacing:
+      -2.5px;
+
   }
 
 
   .hero-description {
-    font-size: 16px;
 
-    line-height: 1.7;
+    margin-top:
+      21px;
+
+    font-size:
+      16px;
+
+    line-height:
+      1.7;
+
+  }
+
+
+  /* Full-width buttons */
+
+  .hero-actions,
+  .contact-actions,
+  .resume-actions {
+
+    flex-direction:
+      column;
+
+    align-items:
+      stretch;
+
   }
 
 
   .hero-actions {
-    flex-direction: column;
 
-    align-items: stretch;
+    margin-top:
+      27px;
+
   }
 
 
-  .hero-actions .btn {
-    width: 100%;
+  .hero-actions .btn,
+  .contact-actions .btn,
+  .resume-actions .btn {
+
+    width:
+      100%;
+
   }
 
 
   .social-links {
-    gap: 16px;
+
+    gap:
+      14px 18px;
+
+    margin-top:
+      24px;
+
   }
 
 
-  .section {
-    padding-top: 65px;
+  /* Sections */
 
-    padding-bottom: 65px;
+  .section {
+
+    padding-top:
+      65px;
+
+    padding-bottom:
+      65px;
+
   }
 
 
   .section h2 {
-    font-size: 32px;
+
+    font-size:
+      32px;
+
+  }
+
+
+  #about > p:not(.muted) {
+
+    font-size:
+      15px;
+
+  }
+
+
+  /* Projects */
+
+  .project-grid {
+
+    gap:
+      16px;
+
+    margin-top:
+      25px;
+
   }
 
 
   .project-card {
-    padding: 23px;
 
-    min-height: auto;
+    padding:
+      22px;
+
+    min-height:
+      auto;
+
   }
 
 
   .project-card h3 {
-    font-size: 23px;
+
+    font-size:
+      23px;
+
+  }
+
+
+  .project-card > p {
+
+    font-size:
+      13.5px;
+
   }
 
 
   .project-links {
-    flex-direction: column;
 
-    align-items: stretch;
+    flex-direction:
+      column;
+
+    align-items:
+      stretch;
+
   }
 
 
   .project-btn {
-    width: 100%;
+
+    width:
+      100%;
+
   }
 
 
+  /* Skills */
+
   .skills {
-    gap: 8px;
+
+    gap:
+      8px;
+
   }
 
 
   .skills span {
-    font-size: 11px;
 
-    padding: 8px 11px;
+    font-size:
+      10.5px;
+
+    padding:
+      8px 10px;
+
   }
 
+
+  /* Education */
+
+  .education-card {
+
+    padding:
+      21px;
+
+  }
+
+
+  /* Resume */
+
+  .resume-card {
+
+    padding:
+      25px 21px;
+
+    gap:
+      25px;
+
+  }
+
+
+  /* Contact */
 
   .contact h2 {
-    font-size: 38px;
+
+    font-size:
+      38px;
+
   }
 
 
-  .contact-actions {
-    flex-direction: column;
-
-    align-items: stretch;
-  }
-
-
-  .contact-actions .btn {
-    width: 100%;
-  }
-
+  /* Footer */
 
   .footer {
-    flex-direction: column;
 
-    text-align: center;
+    flex-direction:
+      column;
 
-    gap: 7px;
+    text-align:
+      center;
+
+    gap:
+      7px;
+
+    padding-inline:
+      14px;
+
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+  .container {
+
+    width:
+      min(
+        calc(100% - 22px),
+        var(--container)
+      );
+
+  }
+
+
+  .hero h1 {
+
+    font-size:
+      37px;
+
+    letter-spacing:
+      -2px;
+
+  }
+
+
+  .logo {
+
+    font-size:
+      19px;
+
+  }
+
+
+  .project-card,
+  .resume-card {
+
+    border-radius:
+      13px;
+
   }
 
 }
@@ -1066,12 +1899,18 @@ nav a:last-child:hover {
    ACCESSIBILITY
 ========================================================= */
 
-a:focus-visible {
-  outline: 2px solid var(--brand);
+a:focus-visible,
+button:focus-visible {
 
-  outline-offset: 4px;
+  outline:
+    2px solid var(--brand);
 
-  border-radius: 4px;
+  outline-offset:
+    4px;
+
+  border-radius:
+    4px;
+
 }
 
 
@@ -1082,13 +1921,20 @@ a:focus-visible {
 @media (prefers-reduced-motion: reduce) {
 
   html {
-    scroll-behavior: auto;
+
+    scroll-behavior:
+      auto;
+
   }
+
 
   *,
   *::before,
   *::after {
-    transition: none !important;
+
+    transition:
+      none !important;
+
   }
 
 }
