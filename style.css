@@ -362,17 +362,13 @@ span:nth-child(3) {
 ========================================================= */
 
 .hero {
-
-  min-height: 680px;
-
-  display: flex;
-
+  min-height: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
   align-items: center;
-
-  padding-top: 100px;
-
-  padding-bottom: 90px;
-
+  gap: 55px;
+  padding-top: 75px;
+  padding-bottom: 75px;
 }
 
 
